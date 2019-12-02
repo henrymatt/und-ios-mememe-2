@@ -10,17 +10,32 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var takePictureButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        verifyDeviceCanTakePictures()
     }
+    
+    func verifyDeviceCanTakePictures() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            // TODO: Nothing?
+        } else {
+            takePictureButton.isEnabled = false
+        }
+    }
+    
     
     @IBAction func choosePicture(_ sender: Any) {
-        print("Choosing a picture")
+        let pickerController = UIImagePickerController()
+        pickerController.sourceType = .savedPhotosAlbum
+        present(pickerController, animated: true, completion: nil)
     }
     
-    @IBAction func selectPicture(_ sender: Any) {
-        print("Select a picture")
+    @IBAction func takePhoto(_ sender: Any) {
+        let pickerController = UIImagePickerController()
+        pickerController.sourceType = .camera
+        present(pickerController, animated: true, completion: nil)
     }
 
 
