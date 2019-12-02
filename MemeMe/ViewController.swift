@@ -18,6 +18,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     
+    let defaultText = "ENTER TEXT"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +55,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomText.delegate = self
         topText.defaultTextAttributes = memeTextAttributes
         bottomText.defaultTextAttributes = memeTextAttributes
-        topText.text = "ENTER TEXT"
-        bottomText.text = "ENTER TEXT"
+        topText.text = defaultText
+        bottomText.text = defaultText
     }
     
     func verifyDeviceCanTakePictures() {
@@ -78,17 +80,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if textField.text == defaultText {
+            textField.text = ""
+        }
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if (textField.text == "") {
-            textField.text = "ENTER TEXT"
+            textField.text = defaultText
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("Should dismiss keyboard")
+        textField.resignFirstResponder()
         return true
     }
     
