@@ -8,17 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var takePictureButton: UIButton!
     @IBOutlet weak var displayImageView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var deleteImageButton: UIButton!
     
+    @IBOutlet weak var topText: UITextField!
+    @IBOutlet weak var bottomText: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         verifyDeviceCanTakePictures()
         setUIForNoImageState()
+        setUpTextFields()
     }
     
     func setUIForImageEditingState() {
@@ -30,6 +35,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         displayImageView.isHidden = true
         deleteImageButton.isHidden = true
         imageView.image = nil
+    }
+    
+    func setUpTextFields() {
+        let memeParagaphAttributes = NSMutableParagraphStyle()
+        memeParagaphAttributes.alignment = .center
+        
+        let memeTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.strokeWidth: -1.0,
+            NSAttributedString.Key.paragraphStyle: memeParagaphAttributes
+        ]
+        
+        topText.delegate = self
+        bottomText.delegate = self
+        topText.defaultTextAttributes = memeTextAttributes
+        bottomText.defaultTextAttributes = memeTextAttributes
+        topText.text = "ENTER TEXT"
+        bottomText.text = "ENTER TEXT"
     }
     
     func verifyDeviceCanTakePictures() {
@@ -50,6 +75,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField.text == "") {
+            textField.text = "ENTER TEXT"
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("Should dismiss keyboard")
+        return true
     }
     
     @IBAction func choosePicture(_ sender: Any) {

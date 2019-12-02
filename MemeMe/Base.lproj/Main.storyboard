@@ -50,13 +50,46 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LVx-AS-sbC">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="289"/>
                                             </imageView>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZp-zi-xl9">
+                                                <rect key="frame" x="15" y="31" width="290" height="15"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="TOP TEXT">
+                                                        <attributes>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <font key="NSFont" metaFont="menu" size="11"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mdz-cb-jec">
+                                                <rect key="frame" x="0.0" y="274" width="320" height="15"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="BOTTOM TEXT">
+                                                        <attributes>
+                                                            <font key="NSFont" metaFont="menu" size="11"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="uZp-zi-xl9" firstAttribute="centerX" secondItem="pot-iS-P05" secondAttribute="centerX" id="7DH-8z-G6k"/>
+                                            <constraint firstAttribute="trailing" secondItem="uZp-zi-xl9" secondAttribute="trailing" constant="15" id="92a-eE-vZg"/>
                                             <constraint firstItem="LVx-AS-sbC" firstAttribute="leading" secondItem="pot-iS-P05" secondAttribute="leading" id="9xk-uB-Lqt"/>
                                             <constraint firstAttribute="trailing" secondItem="LVx-AS-sbC" secondAttribute="trailing" id="Afi-8b-tO7"/>
                                             <constraint firstAttribute="bottom" secondItem="LVx-AS-sbC" secondAttribute="bottom" constant="111" id="C0w-KV-Cv2"/>
                                             <constraint firstItem="LVx-AS-sbC" firstAttribute="top" secondItem="pot-iS-P05" secondAttribute="top" id="Ldt-AD-TmG"/>
+                                            <constraint firstItem="mdz-cb-jec" firstAttribute="centerX" secondItem="LVx-AS-sbC" secondAttribute="centerX" id="UHz-lx-0m0"/>
+                                            <constraint firstItem="uZp-zi-xl9" firstAttribute="top" secondItem="pot-iS-P05" secondAttribute="top" constant="31" id="Wua-ZE-zzJ"/>
+                                            <constraint firstItem="mdz-cb-jec" firstAttribute="leading" secondItem="LVx-AS-sbC" secondAttribute="leading" id="YFH-pT-nGT"/>
+                                            <constraint firstItem="uZp-zi-xl9" firstAttribute="leading" secondItem="pot-iS-P05" secondAttribute="leading" constant="15" id="rQC-M3-MMu"/>
+                                            <constraint firstItem="mdz-cb-jec" firstAttribute="trailing" secondItem="LVx-AS-sbC" secondAttribute="trailing" id="x3b-vR-XEV"/>
+                                            <constraint firstItem="mdz-cb-jec" firstAttribute="bottom" secondItem="LVx-AS-sbC" secondAttribute="bottom" id="xSn-MB-mx9"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -109,10 +142,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomText" destination="mdz-cb-jec" id="N4G-2c-kIL"/>
                         <outlet property="deleteImageButton" destination="gzl-89-O16" id="Vry-Ta-YcP"/>
                         <outlet property="displayImageView" destination="pot-iS-P05" id="NQQ-a3-aEs"/>
                         <outlet property="imageView" destination="LVx-AS-sbC" id="Xc2-tz-Hhi"/>
                         <outlet property="takePictureButton" destination="YlV-Xe-Nnw" id="RWW-Fj-u8z"/>
+                        <outlet property="topText" destination="uZp-zi-xl9" id="sfd-qq-9kY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
