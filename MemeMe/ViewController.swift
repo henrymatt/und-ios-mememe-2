@@ -8,13 +8,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var takePictureButton: UIButton!
+    @IBOutlet weak var displayImageView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var deleteImageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         verifyDeviceCanTakePictures()
+        setUIForNoImageState()
+    }
+    
+    func setUIForImageEditingState() {
+        displayImageView.isHidden = false
+        deleteImageButton.isHidden = false
+    }
+    
+    func setUIForNoImageState() {
+        displayImageView.isHidden = true
+        deleteImageButton.isHidden = true
+        imageView.image = nil
     }
     
     func verifyDeviceCanTakePictures() {
@@ -25,17 +40,34 @@ class ViewController: UIViewController {
         }
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            imageView.image = image
+            setUIForImageEditingState()
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func choosePicture(_ sender: Any) {
         let pickerController = UIImagePickerController()
         pickerController.sourceType = .savedPhotosAlbum
+        pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
     }
     
     @IBAction func takePhoto(_ sender: Any) {
         let pickerController = UIImagePickerController()
         pickerController.sourceType = .camera
+        pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func deleteImage() {
+        setUIForNoImageState()
     }
 
 
