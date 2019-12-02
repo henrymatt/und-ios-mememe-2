@@ -17,11 +17,43 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSM-Yu-Bva" userLabel="Image View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-ps-vkE" userLabel="No Image Set View">
+                                        <rect key="frame" x="0.0" y="34" width="320" height="332"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnF-u9-X0V">
+                                                <rect key="frame" x="101.5" y="61" width="117" height="30"/>
+                                                <state key="normal" title="Choose a Picture"/>
+                                                <connections>
+                                                    <action selector="choosePicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jFG-Ou-3cg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlV-Xe-Nnw">
+                                                <rect key="frame" x="111.5" y="143" width="97" height="30"/>
+                                                <state key="normal" title="Take a Picture"/>
+                                                <connections>
+                                                    <action selector="selectPicture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UZt-79-IsO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="rnF-u9-X0V" firstAttribute="centerX" secondItem="aU2-ps-vkE" secondAttribute="centerX" id="4ia-2b-cLF"/>
+                                            <constraint firstItem="YlV-Xe-Nnw" firstAttribute="centerX" secondItem="aU2-ps-vkE" secondAttribute="centerX" id="IIn-7y-poG"/>
+                                            <constraint firstItem="rnF-u9-X0V" firstAttribute="top" secondItem="aU2-ps-vkE" secondAttribute="top" constant="61" id="wzZ-GF-d2D"/>
+                                            <constraint firstItem="YlV-Xe-Nnw" firstAttribute="top" secondItem="rnF-u9-X0V" secondAttribute="bottom" constant="52" id="xD0-bf-yT2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="CPt-DH-Kaz"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="600" id="GbE-Ka-6Ta"/>
+                                    <constraint firstItem="aU2-ps-vkE" firstAttribute="width" secondItem="aSM-Yu-Bva" secondAttribute="width" id="Uh0-mr-qgp"/>
+                                    <constraint firstItem="aU2-ps-vkE" firstAttribute="centerX" secondItem="aSM-Yu-Bva" secondAttribute="centerX" id="Wsw-fZ-qqo"/>
+                                    <constraint firstItem="aU2-ps-vkE" firstAttribute="height" secondItem="aSM-Yu-Bva" secondAttribute="height" multiplier="0.83" id="eg9-Fg-e2Q"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="swC-6V-aVN"/>
+                                    <constraint firstItem="aU2-ps-vkE" firstAttribute="centerY" secondItem="aSM-Yu-Bva" secondAttribute="centerY" id="uya-aD-odo"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAe-IX-8RO" userLabel="Control View">
@@ -47,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.60714285714286" y="136.23188405797103"/>
+            <point key="canvasLocation" x="135" y="135"/>
         </scene>
     </scenes>
 </document>
