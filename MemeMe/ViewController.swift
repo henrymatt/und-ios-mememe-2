@@ -46,7 +46,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,
             NSAttributedString.Key.strokeWidth: -1.0,
             NSAttributedString.Key.paragraphStyle: memeParagaphAttributes
         ]
@@ -60,9 +60,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func verifyDeviceCanTakePictures() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            // TODO: Nothing?
-        } else {
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             takePictureButton.isEnabled = false
         }
     }
@@ -83,7 +81,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if textField.text == defaultText {
             textField.text = ""
         }
-        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
