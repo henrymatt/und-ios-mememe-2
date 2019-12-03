@@ -116,22 +116,23 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="abx-ZK-bcj">
-                        <barButtonItem key="rightBarButtonItem" id="1yw-ij-0tO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gzl-89-O16">
-                                <rect key="frame" x="314" y="7" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="deleteImage" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZCh-iZ-1vl"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="8bm-oB-LY2">
+                            <connections>
+                                <action selector="shareMeme" destination="BYZ-38-t0r" id="hf0-KN-8Ep"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="d9d-6g-XGC">
+                            <connections>
+                                <action selector="deleteImage" destination="BYZ-38-t0r" id="laF-AA-wGo"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomText" destination="mdz-cb-jec" id="N4G-2c-kIL"/>
-                        <outlet property="deleteImageButton" destination="gzl-89-O16" id="Vry-Ta-YcP"/>
+                        <outlet property="deleteImageButton" destination="d9d-6g-XGC" id="6Da-f5-ycD"/>
                         <outlet property="displayImageView" destination="pot-iS-P05" id="NQQ-a3-aEs"/>
                         <outlet property="imageView" destination="LVx-AS-sbC" id="Xc2-tz-Hhi"/>
+                        <outlet property="shareMemeButton" destination="8bm-oB-LY2" id="sOe-CG-Sny"/>
                         <outlet property="takePictureButton" destination="YlV-Xe-Nnw" id="RWW-Fj-u8z"/>
                         <outlet property="topText" destination="uZp-zi-xl9" id="sfd-qq-9kY"/>
                     </connections>
@@ -159,4 +160,7 @@
             <point key="canvasLocation" x="135" y="135"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
+    </resources>
 </document>
