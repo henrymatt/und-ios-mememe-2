@@ -23,6 +23,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let defaultText = "ENTER TEXT"
     
+    struct Meme {
+        let topText: String
+        let bottomText: String
+        let originalImage: UIImage
+        let memedImage: UIImage
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +136,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func shareMeme() {
+        let memedImage = generateMemedImage()
+        let activityView = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
+        present(activityView, animated: true, completion: nil)
         
     }
     
@@ -162,6 +171,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
+    }
+    
+    func generateMemedImage() -> UIImage {
+        navigationController?.isToolbarHidden = true
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        navigationController?.isToolbarHidden = false
+        
+        return memedImage
     }
 }
 
