@@ -171,25 +171,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func shareMeme() {
         let memedImage = generateMemedImage()
         let activityView = UIActivityViewController.init(activityItems: [memedImage], applicationActivities: nil)
-        present(activityView, animated: true, completion: {
-            let meme = Meme(topText: self.topText.text!, bottomText: self.topText.text!, originalImage: self.imageView.image!, memedImage: memedImage)
-            // Instructions do not specify what we should do with this struct
-        })
+        activityView.completionWithItemsHandler = { (activity, success, items, error) in
+            if (success) {
+                self.saveMeme(memedImage)
+            }
+        }
+        present(activityView, animated: true)
     }
     
     func generateMemedImage() -> UIImage {
-        navigationController?.isToolbarHidden = true
         toolbar.isHidden = true
         
-        UIGraphicsBeginImageContext(self.imageView.frame.size)
-        view.drawHierarchy(in: self.imageView.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        navigationController?.isToolbarHidden = false
         toolbar.isHidden = false
         
         return memedImage
+    }
+    
+    func saveMeme(_ memedImage: UIImage) {
+        //let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        //commenting out because we don't actually do anything with this meme
+        print("Saved the meme")
     }
     
     
