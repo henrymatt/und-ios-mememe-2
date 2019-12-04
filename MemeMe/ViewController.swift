@@ -85,6 +85,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func setMemeTextAttributes() {
+        setMemeTextAttributesFor(textField: topText)
+        setMemeTextAttributesFor(textField: bottomText)
+    }
+    
+    func setMemeTextAttributesFor(textField: UITextField) {
         let memeParagaphAttributes = NSMutableParagraphStyle()
         memeParagaphAttributes.alignment = .center
         
@@ -96,12 +101,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NSAttributedString.Key.paragraphStyle: memeParagaphAttributes
         ]
         
-        topText.delegate = self
-        bottomText.delegate = self
-        topText.defaultTextAttributes = memeTextAttributes
-        bottomText.defaultTextAttributes = memeTextAttributes
-        topText.text = defaultText
-        bottomText.text = defaultText
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.text = defaultText
     }
     
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
@@ -151,15 +153,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: Main Actions
     
     @IBAction func choosePictureFromAlbum(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.sourceType = .savedPhotosAlbum
-        pickerController.delegate = self
-        present(pickerController, animated: true, completion: nil)
+        presentPickerControllerWith(sourceType: .savedPhotosAlbum)
     }
     
     @IBAction func takePictureFromCamera(_ sender: Any) {
+        presentPickerControllerWith(sourceType: .camera)
+    }
+    
+    func presentPickerControllerWith(sourceType: UIImagePickerController.SourceType) {
         let pickerController = UIImagePickerController()
-        pickerController.sourceType = .camera
+        pickerController.sourceType = sourceType
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
     }
