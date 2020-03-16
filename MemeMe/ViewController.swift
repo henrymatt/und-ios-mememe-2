@@ -25,14 +25,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let defaultText = "ENTER TEXT"
     
-    struct Meme {
-        let topText: String
-        let bottomText: String
-        let originalImage: UIImage
-        let memedImage: UIImage
-    }
-    
-    
     // MARK: Lifecycle Methods
     
     override func viewDidLoad() {
@@ -196,9 +188,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func saveMeme(_ memedImage: UIImage) {
-        //let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
-        //commenting out because we don't actually do anything with this meme
-        print("Saved the meme")
+        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        
+        let appDelegate = (UIApplication.shared.delegate) as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     
