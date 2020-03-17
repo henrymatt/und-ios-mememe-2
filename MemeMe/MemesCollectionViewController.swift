@@ -12,11 +12,8 @@ private let reuseIdentifier = "MemeCell"
 
 class MemesCollectionViewController: UICollectionViewController {
     
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +33,7 @@ class MemesCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeCollectionViewCell
         let selectedMeme = memes[indexPath.row]
         
-        cell.memeImageView?.image = selectedMeme.originalImage
+        cell.memeImageView?.image = selectedMeme.memedImage
     
         return cell
     }
